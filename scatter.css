@@ -1,0 +1,35 @@
+body {
+    background-color: azure;
+}
+
+h1,h3,p {
+    text-align: center;
+}
+
+#scatter-plot {
+    text-align: center;
+}
+
+.axis {
+    fill: none;
+    stroke: #3A3A;
+}
+
+.aixs text{
+    fill: black;
+}
+.circle {
+    stroke: #3A3A;
+}
+
+.cyclist circle:hover {
+    cursor: pointer;
+}
+
+.tooltip {
+    position: absolute;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #000;
+    color: white;
+}
