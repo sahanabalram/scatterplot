@@ -47,6 +47,12 @@ $(document).ready(function(){
             "left": (d3.event.pageX = tipsize.dx - 5) + px
         }).html("<span><b>" + d.Name + ":" + d.Nationality + ":" + "<br/>" + "Place: " + d.Place + "| Time:" + d.Time + "<br/>" + "Year: " + d.Year + "<br/><br/>" + "Doping: " + d.Doping + "</b></span>");
 
-        
+        function hideTooltip(d, i) {
+            tooltip.style({
+                "height": "0",
+                "width": "0",
+                "opacity": "0"
+            });
+        }
     }
 });
