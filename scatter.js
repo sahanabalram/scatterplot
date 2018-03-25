@@ -5,4 +5,7 @@ $(document).ready(function(){
     let height = 480, width = 780;
 
     let format = d3.time.format("%M:%S");
+
+    var y = d3.scale.linear().range([0,height]);
+    var x = d3.time.scale.range([0,width]);
 });
