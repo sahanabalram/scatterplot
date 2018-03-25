@@ -28,4 +28,25 @@ $(document).ready(function(){
     function doping(arg){
         return arg !== "" ? "red" : "orange";
     }
+
+    function showTooltip(d,i) {
+        tooltip.style({
+            "height": "125px",
+            "width": "200px",
+            "opacity": "0.9"
+        });
+
+        let circle = d3.event.target;
+        let tipadding = 5, tipsize = {
+            dx: parseInt(tooltip.style("width")),
+            dy: parseInt(tooltip.style("height"))
+        };
+
+        tooltip.style({
+            "top": (d3.event.pageY - tipsize.dy - 5) + px,
+            "left": (d3.event.pageX = tipsize.dx - 5) + px
+        }).html("<span><b>" + d.Name + ":" + d.Nationality + ":" + "<br/>" + "Place: " + d.Place + "| Time:" + d.Time + "<br/>" + "Year: " + d.Year + "<br/><br/>" + "Doping: " + d.Doping + "</b></span>");
+
+        
+    }
 });
