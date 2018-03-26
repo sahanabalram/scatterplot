@@ -1,25 +1,27 @@
 body {
-    background-color: azure;
+    background-image: url("https://images6.alphacoders.com/597/thumb-1920-597942.jpg");
 }
 
 h1,h3,p {
     text-align: center;
+    color: white;
+    font-family: 'Acme', sans-serif;
 }
 
-#scatter-plot {
+#scatterplot-stats {
     text-align: center;
 }
 
 .axis {
     fill: none;
-    stroke: #3A3A;
+    stroke: brown;
 }
 
 .aixs text{
     fill: black;
 }
 .circle {
-    stroke: #3A3A;
+    stroke: brown;
 }
 
 .cyclist circle:hover {
@@ -30,6 +32,6 @@ h1,h3,p {
     position: absolute;
     padding: 5px;
     box-sizing: border-box;
-    background-color: #000;
-    color: white;
+    background-color:pink;
+    color: black;
 }
