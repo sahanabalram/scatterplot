@@ -54,5 +54,64 @@ $(document).ready(function(){
                 "opacity": "0"
             });
         }
+
+        function openEntry(d) {
+            if(d.url) {
+                let win = window.open(d.url, "_blank");
+                win.focus();
+            }
+        }
     }
+
+    d3.json(url,(error,data)=> {
+        if(error){
+            throw new Error("d3.json error");
+        } else {
+            let fastest = d3.min(data.map((item)=> {
+                return format.parse(item.Time);
+            }));
+
+            let slowest = d3.max(data.map((item) => {
+                return format.parse(item.Time);
+            }));
+
+            x.domain([slowest,fastest]);
+            y.domain([1,d3.max(data,(d) => {
+                return d.Place;
+            }) + 1]);
+
+            svg.append("g").attr("class","x axis").attr("transform","translate(0," + height + ")").call(xAxis).append("text").attr("transform","translate(0," + width + ", -30)").attr("dy","1.8em").attr("text-anchor","end").text("Race time for 13.8 km");
+
+            svg.append("g").attr("class","y axis").attr("transform","translate(0," + height + ")").call(YAxis).append("text").attr("transform","rotate(-90)").attr("dy","0.8em").attr("text-anchor","end").text("Rank");
+
+            let cyclist = svg.selectAll(".cyclicst").data(data).enter().append("g").attr("class","cyclist").attr("x",(d)=>{
+                return x(format.parse(d.Time));
+            })
+            .attr("y",(d)=>{
+                return y(d.Place);
+            });
+
+            cyclist.append("circle").attr("cx", (d)=> {
+                return x(format.parse(d.Time));
+            })
+            .attr("cy", (d)=> {
+                return y(d.Place);
+            })
+            .attr("r",5).attr("fill",(d)=> {
+                return doping(d.Doping);
+            })
+            .on("mouseover",showTooltip).on("mouseout",hideTooltip).on("click",openEntry);
+
+            cyclist.append("text").attr("x",(d) => {
+                return x(fomrat.parse(d.Time))+ 7;
+            })
+
+            .attr("y",(d) => {
+                return y(d.Place)+ 5;
+            })
+            .text((d) => {
+                return d.Name;
+            });
+        }
+    });
 });
